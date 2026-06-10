@@ -1,3 +1,4 @@
+import config from "../config"
 import { supabase } from "./lib/supabase"
 import ProductCard from "./components/ProductCard"
 
@@ -15,8 +16,8 @@ export default async function Home() {
     <main>
       {/* Hero Section */}
       <section className="bg-black text-white px-6 py-20 text-center">
-        <h1 className="text-4xl font-bold mb-4">New Arrivals Are Here</h1>
-        <p className="text-gray-400 text-lg mb-8">Shop the latest styles, accessories and more</p>
+       <h1 className="text-4xl font-bold mb-4">{config.heroTitle}</h1>
+<p className="text-gray-400 text-lg mb-8">{config.heroSubtitle}</p>
         
          <a href="/products"
           className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"

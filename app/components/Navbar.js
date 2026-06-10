@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useCart } from "../context/CartContext"
 import { supabase } from "../lib/supabase"
 import { useEffect, useState } from "react"
+import config from "../../config"
 
 export default function Navbar() {
   const { getTotalItems } = useCart()
@@ -33,7 +34,7 @@ const handleLogout = async () => {
 </div>
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
 
-      <Link href="/" className="text-xl font-bold text-gray-800">MyStore</Link>
+      <Link href="/" className="text-xl font-bold text-gray-800">{config.storeName}</Link>
       <ul className="flex gap-6 text-gray-600 items-center">
         <li><Link href="/">Home</Link></li>
         <li><Link href="/products">Products</Link></li>
