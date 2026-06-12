@@ -1,5 +1,5 @@
 "use client"
-
+import Link from "next/link"
 import { useState } from "react"
 import { supabase } from "../lib/supabase"
 
@@ -77,6 +77,13 @@ export default function LoginPage() {
           {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Login"}
         </button>
 
+{!isSignUp && (
+  <p className="text-right text-sm">
+    <Link href="/forgot-password" className="text-gray-500 hover:text-black">
+      Forgot password?
+    </Link>
+  </p>
+)}
         <p className="text-center text-gray-500 text-sm">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}
           <button
