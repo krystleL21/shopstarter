@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [isSignUp, setIsSignUp] = useState(false)
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleAuth = async () => {
     setLoading(true)
@@ -47,13 +48,22 @@ export default function LoginPage() {
           onChange={(e) => setEmail(e.target.value)}
           className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
-        />
+<div className="relative">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black w-full"
+  />
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-2.5 text-gray-500 hover:text-black"
+  >
+    {showPassword ? "🙈" : "👁️"}
+  </button>
+</div>
 
         {message && (
           <p className="text-sm text-red-500">{message}</p>
