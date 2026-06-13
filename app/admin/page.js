@@ -55,15 +55,23 @@ export default function AdminPage() {
 
   return (
     <main className="px-6 py-10 max-w-5xl mx-auto">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
-        <Link
-          href="/admin/add-product"
-          className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-        >
-          + Add Product
-        </Link>
-      </div>
+<div className="flex justify-between items-center mb-8">
+  <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+  <div className="flex gap-3">
+    <Link
+      href="/admin/gallery"
+      className="bg-gray-100 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+    >
+      Image Gallery
+    </Link>
+    <Link
+      href="/admin/add-product"
+      className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+    >
+      + Add Product
+    </Link>
+  </div>
+</div>
 
       <div className="bg-white rounded-xl shadow-md overflow-hidden">
         <table className="w-full text-left">
