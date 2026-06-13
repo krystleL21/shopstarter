@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
         />
 
         {message && (
-          <p className="text-sm text-green-600">{message}</p>
+          <p className={`text-sm ${message.includes("Check your email") ? "text-green-600" : "text-red-500"}`}>{message}</p>
         )}
 
         <button
