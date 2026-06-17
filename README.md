@@ -249,4 +249,4 @@ When you're ready to accept real payments:
 
 ## Support
 
-If you run into any issues setting up ShopStarter, please reach out via [your support email/contact here].
+If you run into any issues setting up ShopStarter, please reach out via shopstater@outlook.com

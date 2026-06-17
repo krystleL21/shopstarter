@@ -5,6 +5,9 @@ const config = {
   storeEmail: "hello@yourstore.com",
   heroTitle: "New Arrivals Are Here",
   heroSubtitle: "Shop the latest styles, accessories and more",
+  aboutTitle: "Our Story",
+  aboutContent: "We started this store because we believe everyone deserves access to quality products without the markup. What began as a small idea has grown into a place we're proud to call home. Thank you for shopping with us.",
+  aboutImage: "",
 
   // Branding
   logo: "/images/logo.png",

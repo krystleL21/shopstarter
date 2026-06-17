@@ -38,6 +38,7 @@ const handleLogout = async () => {
       <ul className="flex gap-6 text-gray-600 items-center">
         <li><Link href="/">Home</Link></li>
         <li><Link href="/products">Products</Link></li>
+        <li><Link href="/about">About</Link></li>
         <li>
           <Link href="/cart" className="relative">
             Cart
