@@ -32,10 +32,10 @@ const handleLogout = async () => {
 <div className="bg-yellow-400 text-black text-center text-sm py-2 px-4 font-semibold">
   🛍️ Demo Store — Products are not real. Use test card 4242 4242 4242 4242 for checkout.
 </div>
-    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <nav style={{ background: "var(--theme-bg)" }} className="shadow-md px-6 py-4 flex justify-between items-center">
 
-      <Link href="/" className="text-xl font-bold text-gray-800">{config.storeName}</Link>
-      <ul className="flex gap-6 text-gray-600 items-center">
+      <Link href="/" style={{ color: "var(--theme-text)" }} className="text-xl font-bold">{config.storeName}</Link>
+      <ul style={{ color: "var(--theme-text)" }} className="flex gap-6 items-center opacity-80">
         <li><Link href="/">Home</Link></li>
         <li><Link href="/products">Products</Link></li>
         <li><Link href="/about">About</Link></li>

@@ -20,7 +20,37 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--theme-bg);
+  color: var(--theme-text);
+  font-family: var(--theme-font);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+[data-theme="classic"] {
+  --theme-bg: #ffffff;
+  --theme-text: #1a1a1a;
+  --theme-accent: #000000;
+  --theme-accent-text: #ffffff;
+  --theme-hero-bg: #0a0a0a;
+  --theme-font: Arial, Helvetica, sans-serif;
+  --theme-radius: 0.5rem;
+}
+
+[data-theme="streetwear"] {
+  --theme-bg: #0a0a0a;
+  --theme-text: #f5f5f5;
+  --theme-accent: #f5f200;
+  --theme-accent-text: #0a0a0a;
+  --theme-hero-bg: #141414;
+  --theme-font: Arial, Helvetica, sans-serif;
+  --theme-radius: 0px;
+}
+
+[data-theme="harvest"] {
+  --theme-bg: #fdf6ec;
+  --theme-text: #5c4326;
+  --theme-accent: #c1572c;
+  --theme-accent-text: #fff3e8;
+  --theme-hero-bg: #f3e2cc;
+  --theme-font: Georgia, "Times New Roman", serif;
+  --theme-radius: 0.25rem;
 }
