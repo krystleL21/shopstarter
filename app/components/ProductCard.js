@@ -18,14 +18,15 @@ export default function ProductCard({ product }) {
       <div className="p-4">
         <p className="text-sm text-gray-400 mb-1">{product.category}</p>
         <Link href={`/products/${product.id}`}>
-          <h2 className="text-lg font-semibold text-gray-800 mb-1 hover:underline cursor-pointer">{product.name}</h2>
+          <h2 style={{ color: "var(--theme-text)" }} className="text-lg font-semibold mb-1 hover:underline cursor-pointer">{product.name}</h2>
         </Link>
         <p className="text-gray-500 text-sm mb-3">{product.description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-gray-900">${product.price}</span>
+          <span style={{ color: "var(--theme-text)" }} className="text-xl font-bold">${product.price}</span>
           <button
-            onClick={() => addToCart(product)}
-            className="bg-black text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+              onClick={() => addToCart(product)}
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="text-sm px-4 py-2 hover:opacity-90 transition-opacity"
           >
             Add to Cart
           </button>
