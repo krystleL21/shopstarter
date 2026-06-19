@@ -15,15 +15,16 @@ export default async function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-black text-white px-6 py-20 text-center">
-       <h1 className="text-4xl font-bold mb-4">{config.heroTitle}</h1>
-<p className="text-gray-400 text-lg mb-8">{config.heroSubtitle}</p>
+      <section style={{ background: "var(--theme-hero-bg)", color: "var(--theme-accent-text)" }} className="px-6 py-20 text-center">
+       <h1 style={{ color: "var(--theme-hero-text)" }} className="text-4xl font-bold mb-4">{config.heroTitle}</h1>
+<p style={{ color: "var(--theme-hero-text)", opacity: 0.7 }} className="text-lg mb-8">{config.heroSubtitle}</p>
         
          <a href="/products"
-          className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
-        >
-          Shop Now
-        </a>
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="px-8 py-3 font-semibold hover:opacity-90 transition-opacity"
+>
+  Shop Now
+</a>
       </section>
 
       {/* Product Grid */}
