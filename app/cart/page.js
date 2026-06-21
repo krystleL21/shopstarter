@@ -2,6 +2,7 @@
 
 import { useCart } from "../context/CartContext"
 import ProtectedRoute from "../components/ProtectedRoute"
+import config from "../../config"
 
 export default function CartPage() {
   const { cart, removeFromCart, getTotalPrice } = useCart()
@@ -9,7 +10,7 @@ export default function CartPage() {
   return (
     <ProtectedRoute>
       <main className="px-6 py-10 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Your Cart</h1>
+        <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-8">Your Cart</h1>
 
         {cart.length === 0 ? (
           <p className="text-gray-500">Your cart is empty. Start shopping!</p>
@@ -17,16 +18,16 @@ export default function CartPage() {
           <>
             <div className="flex flex-col gap-6">
               {cart.map((item) => (
-                <div key={item.id} className="flex items-center gap-4 bg-white rounded-xl shadow-md p-4">
+                <div key={item.id} style={{ background: "var(--theme-bg)" }} className="flex items-center gap-4 rounded-xl shadow-md p-4 border" >
                   <img
                     src={item.image}
                     alt={item.name}
                     className="w-24 h-24 object-cover rounded-lg"
                   />
                   <div className="flex-1">
-                    <h2 className="text-lg font-semibold text-gray-800">{item.name}</h2>
-                    <p className="text-gray-500 text-sm">${item.price} x {item.quantity}</p>
-                    <p className="text-gray-800 font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+<h2 style={{ color: "var(--theme-text)" }} className="text-lg font-semibold">{item.name}</h2>
+<p style={{ color: "var(--theme-text)" }} className="text-sm opacity-60">${item.price} x {item.quantity}</p>
+<p style={{ color: "var(--theme-text)" }} className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
@@ -39,14 +40,15 @@ export default function CartPage() {
             </div>
 
             {/* Total */}
-            <div className="mt-8 border-t pt-6 flex justify-between items-center">
-              <p className="text-xl font-bold text-gray-800">Total</p>
-              <p className="text-xl font-bold text-gray-900">${getTotalPrice()}</p>
-            </div>
+            <div style={{ borderColor: "var(--theme-text)" }} className="mt-8 border-t pt-6 flex justify-between items-center opacity-90">
+  <p style={{ color: "var(--theme-text)" }} className="text-xl font-bold">Total</p>
+  <p style={{ color: "var(--theme-text)" }} className="text-xl font-bold">${getTotalPrice()}</p>
+</div>
 
-            {/* Checkout Button */}
-           <a href="/checkout"
-  className="mt-6 block w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors text-center"
+{/* Checkout Button */}
+<a href="/checkout"
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="mt-6 block w-full py-3 hover:opacity-90 transition-opacity text-center"
 >
   Proceed to Checkout
 </a>
