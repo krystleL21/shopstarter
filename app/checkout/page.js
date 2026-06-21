@@ -6,6 +6,7 @@ import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-
 import { useCart } from "../context/CartContext"
 import { supabase } from "../lib/supabase"
 import ProtectedRoute from "../components/ProtectedRoute"
+import config from "../../config"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -54,13 +55,14 @@ function CheckoutForm({ cart, getTotalPrice, userId, setCart }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <PaymentElement />
       {message && <p className="text-red-500 text-sm">{message}</p>}
-      <button
-        type="submit"
-        disabled={!stripe || loading}
-        className="bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 mt-4"
-      >
-        {loading ? "Processing..." : "Pay Now"}
-      </button>
+<button
+  type="submit"
+  disabled={!stripe || loading}
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="py-3 hover:opacity-90 transition-opacity disabled:opacity-50 mt-4"
+>
+  {loading ? "Processing..." : "Pay Now"}
+</button>
     </form>
   )
 }
@@ -92,29 +94,29 @@ export default function CheckoutPage() {
   return (
     <ProtectedRoute>
       <main className="px-6 py-10 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">Checkout</h1>
+        <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-8">Checkout</h1>
 
-        <div className="bg-white rounded-xl shadow-md p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Order Summary</h2>
-          {cart.map((item) => (
-            <div key={item.id} className="flex justify-between text-gray-600 mb-2">
-              <span>{item.name} x {item.quantity}</span>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
-            </div>
-          ))}
-          <div className="border-t pt-4 mt-4 flex justify-between font-bold text-gray-800">
-            <span>Total</span>
-            <span>${getTotalPrice()}</span>
-          </div>
-        </div>
+        <div style={{ background: "var(--theme-bg)" }} className="rounded-xl shadow-md p-6 mb-8 border">
+  <h2 style={{ color: "var(--theme-text)" }} className="text-xl font-bold mb-4">Order Summary</h2>
+  {cart.map((item) => (
+    <div key={item.id} style={{ color: "var(--theme-text)" }} className="flex justify-between mb-2 opacity-70">
+      <span>{item.name} x {item.quantity}</span>
+      <span>${(item.price * item.quantity).toFixed(2)}</span>
+    </div>
+  ))}
+  <div style={{ borderColor: "var(--theme-text)", color: "var(--theme-text)" }} className="border-t pt-4 mt-4 flex justify-between font-bold">
+    <span>Total</span>
+    <span>${getTotalPrice()}</span>
+  </div>
+</div>
 
         {clientSecret && (
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-6">Payment Details</h2>
-            <Elements stripe={stripePromise} options={{ clientSecret }}>
-              <CheckoutForm cart={cart} getTotalPrice={getTotalPrice} userId={userId} setCart={setCart} />
-            </Elements>
-          </div>
+          <div style={{ background: "var(--theme-bg)" }} className="rounded-xl shadow-md p-6 border">
+  <h2 style={{ color: "var(--theme-text)" }} className="text-xl font-bold mb-6">Payment Details</h2>
+  <Elements stripe={stripePromise} options={{ clientSecret }}>
+    <CheckoutForm cart={cart} getTotalPrice={getTotalPrice} userId={userId} setCart={setCart} />
+  </Elements>
+</div>
         )}
 
         {cart.length === 0 && (
