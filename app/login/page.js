@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { supabase } from "../lib/supabase"
+import config from "../../config"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -36,9 +37,9 @@ export default function LoginPage() {
 
   return (
     <main className="px-6 py-10 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        {isSignUp ? "Create Account" : "Login"}
-      </h1>
+<h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-6">
+  {isSignUp ? "Create Account" : "Login"}
+</h1>
 
       <div className="flex flex-col gap-4">
         <input
@@ -69,13 +70,14 @@ export default function LoginPage() {
           <p className="text-sm text-red-500">{message}</p>
         )}
 
-        <button
-          onClick={handleAuth}
-          disabled={loading}
-          className="bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
-        >
-          {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Login"}
-        </button>
+<button
+  onClick={handleAuth}
+  disabled={loading}
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="py-3 hover:opacity-90 transition-opacity disabled:opacity-50"
+>
+  {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Login"}
+</button>
 
 {!isSignUp && (
   <p className="text-right text-sm">
@@ -84,15 +86,16 @@ export default function LoginPage() {
     </Link>
   </p>
 )}
-        <p className="text-center text-gray-500 text-sm">
-          {isSignUp ? "Already have an account?" : "Don't have an account?"}
-          <button
-            onClick={() => setIsSignUp(!isSignUp)}
-            className="ml-1 text-black font-semibold hover:underline"
-          >
-            {isSignUp ? "Login" : "Sign Up"}
-          </button>
-        </p>
+<p style={{ color: "var(--theme-text)" }} className="text-center text-sm opacity-70">
+  {isSignUp ? "Already have an account?" : "Don't have an account?"}
+  <button
+    onClick={() => setIsSignUp(!isSignUp)}
+    style={{ color: "var(--theme-accent)" }}
+    className="ml-1 font-semibold hover:underline"
+  >
+    {isSignUp ? "Login" : "Sign Up"}
+  </button>
+</p>
       </div>
     </main>
   )
