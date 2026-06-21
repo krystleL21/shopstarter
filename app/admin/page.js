@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import config from "../../config"
 
 export default function AdminPage() {
   const [user, setUser] = useState(null)
@@ -56,49 +57,51 @@ export default function AdminPage() {
   return (
     <main className="px-6 py-10 max-w-5xl mx-auto">
 <div className="flex justify-between items-center mb-8">
-  <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+  <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold">Admin Dashboard</h1>
   <div className="flex gap-3">
     <Link
       href="/admin/gallery"
-      className="bg-gray-100 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+      style={{ borderColor: "var(--theme-text)", color: "var(--theme-text)", borderRadius: "var(--theme-radius)" }}
+      className="px-6 py-2 border opacity-80 hover:opacity-100 transition-opacity"
     >
       Image Gallery
     </Link>
-    <Link
-      href="/admin/add-product"
-      className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-    >
-      + Add Product
-    </Link>
+<Link
+  href="/admin/add-product"
+  style={{ background: "var(--theme-accent)", color: "var(--theme-accent-text)", borderRadius: "var(--theme-radius)" }}
+  className="px-6 py-2 hover:opacity-90 transition-opacity"
+>
+  + Add Product
+</Link>
   </div>
 </div>
 
-      <div className="bg-white rounded-xl shadow-md overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-gray-50 border-b">
+      <div style={{ background: "var(--theme-bg)" }} className="rounded-xl shadow-md overflow-hidden border">
+  <table className="w-full text-left">
+    <thead style={{ borderColor: "var(--theme-text)" }} className="border-b opacity-90">
             <tr>
-              <th className="px-6 py-4 text-gray-600 font-semibold">Product</th>
-              <th className="px-6 py-4 text-gray-600 font-semibold">Category</th>
-              <th className="px-6 py-4 text-gray-600 font-semibold">Price</th>
-              <th className="px-6 py-4 text-gray-600 font-semibold">Stock</th>
-              <th className="px-6 py-4 text-gray-600 font-semibold">Actions</th>
+              <th style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">Product</th>
+<th style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">Category</th>
+<th style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">Price</th>
+<th style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">Stock</th>
+<th style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id} className="border-b hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-12 h-12 object-cover rounded-lg"
-                    />
-                    <span className="font-semibold text-gray-800">{product.name}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-gray-600">{product.category}</td>
-                <td className="px-6 py-4 text-gray-800 font-semibold">${product.price}</td>
+              <tr key={product.id} style={{ borderColor: "var(--theme-text)" }} className="border-b opacity-90">
+  <td className="px-6 py-4">
+    <div className="flex items-center gap-3">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-12 h-12 object-cover rounded-lg"
+      />
+      <span style={{ color: "var(--theme-text)" }} className="font-semibold">{product.name}</span>
+    </div>
+  </td>
+  <td style={{ color: "var(--theme-text)" }} className="px-6 py-4">{product.category}</td>
+  <td style={{ color: "var(--theme-text)" }} className="px-6 py-4 font-semibold">${product.price}</td>
                 <td className="px-6 py-4">
   {product.stock === 0 ? (
     <span className="bg-red-100 text-red-600 text-sm px-3 py-1 rounded-full font-semibold">Out of Stock</span>
