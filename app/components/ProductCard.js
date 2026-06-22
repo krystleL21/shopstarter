@@ -2,15 +2,19 @@
 
 import Link from "next/link"
 import { useCart } from "../context/CartContext"
+import useCurrentTheme from "../hooks/useCurrentTheme"
+import { getThemeProductImage } from "../data/themeProductImages"
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
+  const theme = useCurrentTheme()
+  const displayImage = getThemeProductImage(product, theme)
 
   return (
     <div style={{ background: "var(--theme-bg)", color: "var(--theme-text)", borderRadius: "var(--theme-radius)" }} className="shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border">
       <Link href={`/products/${product.id}`}>
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           className="w-full h-64 object-cover cursor-pointer"
         />

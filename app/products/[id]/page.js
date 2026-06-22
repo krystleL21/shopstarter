@@ -5,12 +5,15 @@ import { useCart } from "../../context/CartContext"
 import { supabase } from "../../lib/supabase"
 import Link from "next/link"
 import { use } from "react"
+import useCurrentTheme from "../../hooks/useCurrentTheme"
+import { getThemeProductImage } from "../../data/themeProductImages"
 
 export default function ProductPage({ params }) {
   const { id } = use(params)
   const { addToCart } = useCart()
   const [product, setProduct] = useState(null)
   const [error, setError] = useState(null)
+  const theme = useCurrentTheme()
 
   useEffect(() => {
     async function fetchProduct() {
@@ -38,6 +41,8 @@ export default function ProductPage({ params }) {
     return <p style={{ color: "var(--theme-text)" }} className="p-10 opacity-80">Loading...</p>
   }
 
+  const displayImage = getThemeProductImage(product, theme)
+
   return (
     <main className="px-6 py-10 max-w-4xl mx-auto">
       {/* Back Button */}
@@ -48,7 +53,7 @@ export default function ProductPage({ params }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4">
         {/* Product Image */}
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           style={{ borderRadius: "var(--theme-radius)" }}
           className="w-full h-96 object-cover shadow-md"

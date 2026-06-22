@@ -39,6 +39,7 @@ export default function Navbar() {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme)
     window.localStorage.setItem("shopstarter-theme", theme)
+    window.dispatchEvent(new CustomEvent("shopstarter-theme-change", { detail: theme }))
   }, [theme])
 
 const handleLogout = async () => {

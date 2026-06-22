@@ -2,9 +2,12 @@
 
 import { useCart } from "../context/CartContext"
 import ProtectedRoute from "../components/ProtectedRoute"
+import useCurrentTheme from "../hooks/useCurrentTheme"
+import { getThemeProductImage } from "../data/themeProductImages"
 
 export default function CartPage() {
   const { cart, removeFromCart, getTotalPrice } = useCart()
+  const theme = useCurrentTheme()
 
   return (
     <ProtectedRoute>
@@ -19,7 +22,7 @@ export default function CartPage() {
               {cart.map((item) => (
                 <div key={item.id} style={{ background: "var(--theme-bg)" }} className="flex items-center gap-4 rounded-xl shadow-md p-4 border" >
                   <img
-                    src={item.image}
+                    src={getThemeProductImage(item, theme)}
                     alt={item.name}
                     className="w-24 h-24 object-cover rounded-lg"
                   />
