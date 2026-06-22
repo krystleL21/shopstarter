@@ -43,7 +43,7 @@ export default function OrdersPage() {
         {!loading && orders.length === 0 && (
           <div className="text-center py-10">
             <p style={{ color: "var(--theme-text)" }} className="mb-4 opacity-80">
-              You haven't placed any orders yet!
+              You haven&apos;t placed any orders yet!
             </p>
             <Link
               href="/products"

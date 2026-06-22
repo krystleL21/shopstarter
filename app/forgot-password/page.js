@@ -32,7 +32,7 @@ export default function ForgotPasswordPage() {
         Forgot Password
       </h1>
       <p style={{ color: "var(--theme-text)" }} className="mb-6 opacity-80">
-        Enter your email and we'll send you a reset link.
+        Enter your email and we&apos;ll send you a reset link.
       </p>
 
       <div className="flex flex-col gap-4">

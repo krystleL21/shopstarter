@@ -9,10 +9,6 @@ export default function GalleryPage() {
   const [copied, setCopied] = useState("")
   const [message, setMessage] = useState("")
 
-  useEffect(() => {
-    fetchImages()
-  }, [])
-
   const fetchImages = async () => {
     const { data, error } = await supabase.storage
       .from("store-images")
@@ -24,6 +20,10 @@ export default function GalleryPage() {
       setImages(data || [])
     }
   }
+
+  useEffect(() => {
+    void Promise.resolve().then(fetchImages)
+  }, [])
 
   const handleUpload = async (e) => {
     const file = e.target.files[0]

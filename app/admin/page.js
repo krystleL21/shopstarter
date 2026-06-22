@@ -12,6 +12,16 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
+  const fetchProducts = async () => {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("id", { ascending: true })
+
+    if (!error) setProducts(data)
+    setLoading(false)
+  }
+
   useEffect(() => {
     async function checkAdmin() {
       const { data: { session } } = await supabase.auth.getSession()
@@ -27,16 +37,6 @@ export default function AdminPage() {
 
     checkAdmin()
   }, [])
-
-  const fetchProducts = async () => {
-    const { data, error } = await supabase
-      .from("products")
-      .select("*")
-      .order("id", { ascending: true })
-
-    if (!error) setProducts(data)
-    setLoading(false)
-  }
 
   const deleteProduct = async (id) => {
     const confirm = window.confirm("Are you sure you want to delete this product?")

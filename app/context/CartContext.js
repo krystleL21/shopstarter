@@ -9,24 +9,6 @@ export function CartProvider({ children }) {
   const [cart, setCart] = useState([])
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-      if (session?.user) loadCart(session.user.id)
-    })
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-      if (session?.user) {
-        loadCart(session.user.id)
-      } else {
-        setCart([])
-      }
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
   const loadCart = async (userId) => {
     const { data, error } = await supabase
       .from("cart")
@@ -57,6 +39,24 @@ export function CartProvider({ children }) {
       setCart(loaded)
     }
   }
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
+      if (session?.user) loadCart(session.user.id)
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+      if (session?.user) {
+        loadCart(session.user.id)
+      } else {
+        setCart([])
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   const addToCart = async (product) => {
     const existing = cart.find((item) => item.id === product.id)
