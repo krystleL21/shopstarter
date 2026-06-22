@@ -191,6 +191,18 @@ const config = {
 | `currency` / `currencySymbol` | How prices are displayed |
 | `social` | Links to your social media pages |
 
+### Theme switching
+
+ShopStarter includes an on-screen theme selector in the navbar, so you can preview different store styles without editing code.
+
+- `Classic` gives you a clean, neutral storefront
+- `Streetwear` gives you a darker, high-contrast storefront
+- `Harvest` gives you a warm, wellness-inspired storefront
+
+The selected theme is saved in the browser, so it stays active after refresh. If you want to set the default theme for new visitors, update `theme` in `config.js`.
+
+Use the theme selector to quickly preview how your store looks in different niches before you choose the final style.
+
 ---
 ## 8. Adding your products
 
