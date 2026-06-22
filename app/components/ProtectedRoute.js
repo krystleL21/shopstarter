@@ -24,7 +24,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="px-6 py-10 text-center text-gray-500">
+      <div style={{ color: "var(--theme-text)" }} className="px-6 py-10 text-center opacity-80">
         Checking authentication...
       </div>
     )

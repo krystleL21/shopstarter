@@ -26,14 +26,26 @@ export default function ProductFilter({ products }) {
           placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-black"
+          style={{
+            background: "var(--theme-bg)",
+            color: "var(--theme-text)",
+            borderColor: "var(--theme-text)",
+            borderRadius: "var(--theme-radius)",
+          }}
+          className="border px-4 py-2 w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)]"
         />
 
         {/* Category Filter */}
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-1/4 focus:outline-none focus:ring-2 focus:ring-black"
+          style={{
+            background: "var(--theme-bg)",
+            color: "var(--theme-text)",
+            borderColor: "var(--theme-text)",
+            borderRadius: "var(--theme-radius)",
+          }}
+          className="border px-4 py-2 w-full sm:w-1/4 focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)]"
         >
           {categories.map((category) => (
             <option key={category} value={category}>
@@ -45,7 +57,9 @@ export default function ProductFilter({ products }) {
 
       {/* Results */}
       {filtered.length === 0 ? (
-        <p className="text-gray-500">No products found.</p>
+        <p style={{ color: "var(--theme-text)" }} className="opacity-80">
+          No products found.
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((product) => (

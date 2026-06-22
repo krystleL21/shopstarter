@@ -47,7 +47,8 @@ export default function LoginPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          style={{ background: "var(--theme-bg)", color: "var(--theme-text)", borderColor: "var(--theme-text)", borderRadius: "var(--theme-radius)" }}
+          className="border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)]"
         />
 <div className="relative">
   <input
@@ -55,12 +56,14 @@ export default function LoginPage() {
     placeholder="Password"
     value={password}
     onChange={(e) => setPassword(e.target.value)}
-    className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black w-full"
+    style={{ background: "var(--theme-bg)", color: "var(--theme-text)", borderColor: "var(--theme-text)", borderRadius: "var(--theme-radius)" }}
+    className="border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)] w-full"
   />
   <button
     type="button"
     onClick={() => setShowPassword(!showPassword)}
-    className="absolute right-3 top-2.5 text-gray-500 hover:text-black"
+    style={{ color: "var(--theme-text)" }}
+    className="absolute right-3 top-2.5 hover:opacity-70"
   >
     {showPassword ? "🙈" : "👁️"}
   </button>
@@ -81,7 +84,7 @@ export default function LoginPage() {
 
 {!isSignUp && (
   <p className="text-right text-sm">
-    <Link href="/forgot-password" className="text-gray-500 hover:text-black">
+    <Link href="/forgot-password" style={{ color: "var(--theme-text)" }} className="opacity-80 hover:opacity-100">
       Forgot password?
     </Link>
   </p>

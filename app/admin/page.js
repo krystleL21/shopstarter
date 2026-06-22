@@ -51,7 +51,7 @@ export default function AdminPage() {
   }
 
   if (loading) {
-    return <p className="p-10 text-gray-500">Loading admin dashboard...</p>
+    return <p style={{ color: "var(--theme-text)" }} className="p-10 opacity-80">Loading admin dashboard...</p>
   }
 
   return (

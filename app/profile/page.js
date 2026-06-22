@@ -19,26 +19,51 @@ export default function ProfilePage() {
   return (
     <ProtectedRoute>
       <main className="px-6 py-10 max-w-md mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">My Account</h1>
+        <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-6">
+          My Account
+        </h1>
         {user && (
-          <div className="bg-white rounded-xl shadow-md p-6 flex flex-col gap-4">
+          <div
+            style={{
+              background: "var(--theme-bg)",
+              color: "var(--theme-text)",
+              borderRadius: "var(--theme-radius)",
+              borderColor: "var(--theme-text)",
+            }}
+            className="shadow-md p-6 flex flex-col gap-4 border"
+          >
             <div>
-              <p className="text-sm text-gray-400">Email</p>
-              <p className="text-gray-800 font-semibold">{user.email}</p>
+              <p style={{ color: "var(--theme-text)" }} className="text-sm opacity-60">
+                Email
+              </p>
+              <p style={{ color: "var(--theme-text)" }} className="font-semibold">
+                {user.email}
+              </p>
             </div>
             <div>
-              <p className="text-sm text-gray-400">Account Created</p>
-              <p className="text-gray-800 font-semibold">
+              <p style={{ color: "var(--theme-text)" }} className="text-sm opacity-60">
+                Account Created
+              </p>
+              <p style={{ color: "var(--theme-text)" }} className="font-semibold">
                 {new Date(user.created_at).toLocaleDateString()}
               </p>
             </div>
             <div>
-              <p className="text-sm text-gray-400">User ID</p>
-              <p className="text-gray-800 font-semibold text-sm">{user.id}</p>
+              <p style={{ color: "var(--theme-text)" }} className="text-sm opacity-60">
+                User ID
+              </p>
+              <p style={{ color: "var(--theme-text)" }} className="font-semibold text-sm">
+                {user.id}
+              </p>
             </div>
             <Link
               href="/orders"
-              className="bg-black text-white text-center py-3 rounded-lg hover:bg-gray-800 transition-colors"
+              style={{
+                background: "var(--theme-accent)",
+                color: "var(--theme-accent-text)",
+                borderRadius: "var(--theme-radius)",
+              }}
+              className="text-center py-3 hover:opacity-90 transition-opacity"
             >
               View Order History
             </Link>

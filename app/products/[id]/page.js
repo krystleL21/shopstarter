@@ -31,17 +31,17 @@ export default function ProductPage({ params }) {
   }, [id])
 
   if (error) {
-    return <p className="p-10 text-gray-500">Product not found.</p>
+    return <p style={{ color: "var(--theme-text)" }} className="p-10 opacity-80">Product not found.</p>
   }
 
   if (!product) {
-    return <p className="p-10 text-gray-500">Loading...</p>
+    return <p style={{ color: "var(--theme-text)" }} className="p-10 opacity-80">Loading...</p>
   }
 
   return (
     <main className="px-6 py-10 max-w-4xl mx-auto">
       {/* Back Button */}
-      <Link href="/" className="text-gray-500 hover:text-black text-sm mb-6 inline-block">
+      <Link href="/" style={{ color: "var(--theme-text)" }} className="text-sm mb-6 inline-block opacity-80 hover:opacity-100">
         ← Back to Products
       </Link>
 
@@ -50,15 +50,16 @@ export default function ProductPage({ params }) {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-96 object-cover rounded-xl shadow-md"
+          style={{ borderRadius: "var(--theme-radius)" }}
+          className="w-full h-96 object-cover shadow-md"
         />
 
         {/* Product Info */}
         <div className="flex flex-col justify-center">
-          <p className="text-sm text-gray-400 mb-2">{product.category}</p>
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.name}</h1>
-          <p className="text-gray-500 mb-6">{product.description}</p>
-          <p className="text-2xl font-bold text-gray-900 mb-6">${product.price}</p>
+          <p style={{ color: "var(--theme-text)" }} className="text-sm mb-2 opacity-60">{product.category}</p>
+          <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-4">{product.name}</h1>
+          <p style={{ color: "var(--theme-text)" }} className="mb-6 opacity-80">{product.description}</p>
+          <p style={{ color: "var(--theme-text)" }} className="text-2xl font-bold mb-6">${product.price}</p>
 
           {/* Stock Status */}
           {product.stock === 0 ? (
@@ -72,7 +73,12 @@ export default function ProductPage({ params }) {
           <button
             onClick={() => addToCart(product)}
             disabled={product.stock === 0}
-            className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{
+              background: "var(--theme-accent)",
+              color: "var(--theme-accent-text)",
+              borderRadius: "var(--theme-radius)",
+            }}
+            className="px-6 py-3 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
           </button>

@@ -3,6 +3,7 @@ import "./globals.css"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 import { CartProvider } from "./context/CartContext"
+import Script from "next/script"
 
 export const metadata = {
   title: {
@@ -21,8 +22,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme={config.theme}>
+    <html lang="en" data-theme={config.theme} suppressHydrationWarning>
       <body>
+        <Script id="theme-init" strategy="beforeInteractive">{`
+          (function () {
+            try {
+              var savedTheme = window.localStorage.getItem('shopstarter-theme');
+              if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+              }
+            } catch (error) {}
+          })();
+        `}</Script>
         <CartProvider>
           <Navbar />
           <main>{children}</main>

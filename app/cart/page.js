@@ -2,7 +2,6 @@
 
 import { useCart } from "../context/CartContext"
 import ProtectedRoute from "../components/ProtectedRoute"
-import config from "../../config"
 
 export default function CartPage() {
   const { cart, removeFromCart, getTotalPrice } = useCart()
@@ -13,7 +12,7 @@ export default function CartPage() {
         <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-8">Your Cart</h1>
 
         {cart.length === 0 ? (
-          <p className="text-gray-500">Your cart is empty. Start shopping!</p>
+          <p style={{ color: "var(--theme-text)" }} className="opacity-80">Your cart is empty. Start shopping!</p>
         ) : (
           <>
             <div className="flex flex-col gap-6">
@@ -31,7 +30,7 @@ export default function CartPage() {
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 hover:text-red-700 text-sm font-semibold"
+                    className="text-sm font-semibold text-red-500 hover:text-red-700"
                   >
                     Remove
                   </button>

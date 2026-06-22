@@ -25,11 +25,20 @@ export default function OrderConfirmationPage() {
   return (
     <main className="px-6 py-20 max-w-lg mx-auto text-center">
       <div className="text-6xl mb-6">🎉</div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Order Confirmed!</h1>
-      <p className="text-gray-500 mb-8">Thank you for your purchase! Your order has been successfully placed.</p>
+      <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-4">
+        Order Confirmed!
+      </h1>
+      <p style={{ color: "var(--theme-text)" }} className="mb-8 opacity-80">
+        Thank you for your purchase! Your order has been successfully placed.
+      </p>
       <Link
         href="/products"
-        className="bg-black text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors"
+        style={{
+          background: "var(--theme-accent)",
+          color: "var(--theme-accent-text)",
+          borderRadius: "var(--theme-radius)",
+        }}
+        className="px-8 py-3 font-semibold hover:opacity-90 transition-opacity"
       >
         Continue Shopping
       </Link>

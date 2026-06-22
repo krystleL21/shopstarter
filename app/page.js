@@ -9,7 +9,7 @@ export default async function Home() {
 
   if (error) {
     console.error("Error fetching products:", error)
-    return <p className="p-10 text-gray-500">Failed to load products.</p>
+    return <p style={{ color: "var(--theme-text)" }} className="p-10 opacity-80">Failed to load products.</p>
   }
 
   return (

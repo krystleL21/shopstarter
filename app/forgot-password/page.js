@@ -28,8 +28,12 @@ export default function ForgotPasswordPage() {
 
   return (
     <main className="px-6 py-10 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Forgot Password</h1>
-      <p className="text-gray-500 mb-6">Enter your email and we'll send you a reset link.</p>
+      <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-2">
+        Forgot Password
+      </h1>
+      <p style={{ color: "var(--theme-text)" }} className="mb-6 opacity-80">
+        Enter your email and we'll send you a reset link.
+      </p>
 
       <div className="flex flex-col gap-4">
         <input
@@ -37,24 +41,37 @@ export default function ForgotPasswordPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          style={{
+            background: "var(--theme-bg)",
+            color: "var(--theme-text)",
+            borderColor: "var(--theme-text)",
+            borderRadius: "var(--theme-radius)",
+          }}
+          className="border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--theme-accent)]"
         />
 
         {message && (
-          <p className={`text-sm ${message.includes("Check your email") ? "text-green-600" : "text-red-500"}`}>{message}</p>
+          <p className="text-sm" style={{ color: message.includes("Check your email") ? "var(--theme-text)" : "#ef4444" }}>
+            {message}
+          </p>
         )}
 
         <button
           onClick={handleReset}
           disabled={loading}
-          className="bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+          style={{
+            background: "var(--theme-accent)",
+            color: "var(--theme-accent-text)",
+            borderRadius: "var(--theme-radius)",
+          }}
+          className="py-3 hover:opacity-90 transition-opacity disabled:opacity-50"
         >
           {loading ? "Sending..." : "Send Reset Link"}
         </button>
 
-        <p className="text-center text-gray-500 text-sm">
+        <p style={{ color: "var(--theme-text)" }} className="text-center text-sm opacity-80">
           Remember your password?{" "}
-          <Link href="/login" className="text-black font-semibold hover:underline">
+          <Link href="/login" style={{ color: "var(--theme-accent)" }} className="font-semibold hover:underline">
             Login
           </Link>
         </p>

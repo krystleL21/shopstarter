@@ -120,7 +120,7 @@ export default function CheckoutPage() {
         )}
 
         {cart.length === 0 && (
-          <p className="text-gray-500">Your cart is empty. Add products before checking out!</p>
+          <p style={{ color: "var(--theme-text)" }} className="opacity-80">Your cart is empty. Add products before checking out!</p>
         )}
       </main>
     </ProtectedRoute>

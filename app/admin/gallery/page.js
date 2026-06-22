@@ -80,11 +80,22 @@ export default function GalleryPage() {
 
   return (
     <main className="px-6 py-10 max-w-5xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-2">Image Gallery</h1>
-      <p className="text-gray-500 mb-6">Upload and manage images for your store.</p>
+      <h1 style={{ color: "var(--theme-text)" }} className="text-3xl font-bold mb-2">
+        Image Gallery
+      </h1>
+      <p style={{ color: "var(--theme-text)" }} className="mb-6 opacity-80">
+        Upload and manage images for your store.
+      </p>
 
       <div className="mb-8">
-        <label className="bg-black text-white px-6 py-3 rounded-lg cursor-pointer hover:bg-gray-800 transition-colors">
+        <label
+          style={{
+            background: "var(--theme-accent)",
+            color: "var(--theme-accent-text)",
+            borderRadius: "var(--theme-radius)",
+          }}
+          className="px-6 py-3 cursor-pointer hover:opacity-90 transition-opacity inline-flex items-center"
+        >
           {uploading ? "Uploading..." : "Upload Image"}
           <input
             type="file"
@@ -97,31 +108,54 @@ export default function GalleryPage() {
       </div>
 
       {message && (
-        <p className="text-sm text-green-600 mb-6">{message}</p>
+        <p style={{ color: "var(--theme-text)" }} className="text-sm mb-6 opacity-80">
+          {message}
+        </p>
       )}
 
       {images.length === 0 ? (
-        <p className="text-gray-400">No images uploaded yet.</p>
+        <p className="opacity-70">No images uploaded yet.</p>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image) => (
-            <div key={image.name} className="border border-gray-200 rounded-lg overflow-hidden">
+            <div
+              key={image.name}
+              style={{
+                background: "var(--theme-bg)",
+                color: "var(--theme-text)",
+                borderColor: "var(--theme-text)",
+                borderRadius: "var(--theme-radius)",
+              }}
+              className="border overflow-hidden shadow-sm"
+            >
               <img
                 src={getPublicUrl(image.name)}
                 alt={image.name}
                 className="w-full h-40 object-cover"
               />
               <div className="p-2 flex flex-col gap-2">
-                <p className="text-xs text-gray-500 truncate">{image.name}</p>
+                <p style={{ color: "var(--theme-text)" }} className="text-xs truncate opacity-80">
+                  {image.name}
+                </p>
                 <button
                   onClick={() => handleCopy(image.name)}
-                  className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 py-1 rounded transition-colors"
+                  style={{
+                    background: "var(--theme-text)",
+                    color: "var(--theme-bg)",
+                    borderRadius: "var(--theme-radius)",
+                  }}
+                  className="text-xs py-1 hover:opacity-90 transition-opacity"
                 >
                   {copied === image.name ? "Copied!" : "Copy URL"}
                 </button>
                 <button
                   onClick={() => handleDelete(image.name)}
-                  className="text-xs bg-red-50 hover:bg-red-100 text-red-600 py-1 rounded transition-colors"
+                  className="text-xs py-1 rounded transition-colors"
+                  style={{
+                    background: "rgba(193, 87, 44, 0.12)",
+                    color: "var(--theme-text)",
+                    borderRadius: "var(--theme-radius)",
+                  }}
                 >
                   Delete
                 </button>
