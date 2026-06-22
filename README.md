@@ -103,7 +103,53 @@ This template includes an admin image gallery that uses Supabase Storage to hold
 - Policy definition: `bucket_id = 'store-images'`
 
 ---
-## 4. Setting up environment variables
+## 4. Enabling Row Level Security
+
+Row Level Security helps keep your data safe by only letting the right users access the right rows.
+
+1. In your Supabase project, open **Table Editor**
+2. Select each table and turn on **RLS**
+3. Add policies like these:
+
+### products table
+
+- Public can read products: `SELECT`
+- Admin can manage products: `INSERT`, `UPDATE`, `DELETE`
+
+Example admin check:
+
+```sql
+auth.jwt() ->> 'email' = 'your_admin_email@example.com'
+```
+
+### cart table
+
+- Logged-in users can read their own cart rows
+- Logged-in users can insert their own cart rows
+- Logged-in users can update their own cart rows
+- Logged-in users can delete their own cart rows
+
+Example ownership check:
+
+```sql
+auth.uid()::text = user_id
+```
+
+### orders table
+
+- Logged-in users can read their own orders
+- Logged-in users can insert their own orders
+
+Example ownership check:
+
+```sql
+auth.uid()::text = user_id
+```
+
+These policies match the app behavior: products are public, cart items belong to the logged-in user, and orders are saved for the authenticated shopper.
+
+---
+## 5. Setting up environment variables
 
 1. In your Supabase project, click **Project Settings** (gear icon) in the left sidebar
 2. Click **API**
@@ -125,7 +171,7 @@ NEXT_PUBLIC_ADMIN_EMAIL=your_admin_email@example.com
 The `NEXT_PUBLIC_ADMIN_EMAIL` should be the email address of the account you want to have admin access — only this email will be able to see the Admin link and access `/admin`.
 
 ---
-## 5. Configuring authentication redirect URLs
+## 6. Configuring authentication redirect URLs
 
 By default, Supabase sends users to a generic URL after they confirm their email, reset their password, etc. You need to tell Supabase where your store lives so these links work correctly.
 
@@ -139,7 +185,7 @@ By default, Supabase sends users to a generic URL after they confirm their email
 You'll need to update these values again once you deploy your store, replacing `http://localhost:3000` with your live URL.
 
 ---
-## 6. Running the project locally
+## 7. Running the project locally
 
 Once your environment variables and Supabase setup are complete, start the development server:
 
@@ -150,7 +196,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) in your browser. You should see your store running!
 
 ---
-## 7. Customizing your store
+## 8. Customizing your store
 
 ShopStarter is designed to be customized from one place — the `config.js` file in the root of the project.
 
@@ -204,7 +250,7 @@ The selected theme is saved in the browser, so it stays active after refresh. If
 Use the theme selector to quickly preview how your store looks in different niches before you choose the final style.
 
 ---
-## 8. Adding your products
+## 9. Adding your products
 
 Once your store is running, log in using the email address set in `NEXT_PUBLIC_ADMIN_EMAIL`. You'll see an **Admin** link in the navbar — click it to open the admin dashboard.
 
@@ -226,7 +272,7 @@ Once your store is running, log in using the email address set in `NEXT_PUBLIC_A
 From the admin dashboard, click **Edit** or **Delete** next to any product.
 
 ---
-## 9. Deploying your store
+## 10. Deploying your store
 
 Once you're happy with your store locally, you can deploy it for free using [Vercel](https://vercel.com).
 

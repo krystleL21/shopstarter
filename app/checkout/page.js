@@ -10,7 +10,7 @@ import config from "../../config"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-function CheckoutForm({ cart, getTotalPrice, userId, setCart }) {
+function CheckoutForm({ cart, getTotalPrice, accessToken, setCart }) {
   const stripe = useStripe()
   const elements = useElements()
   const [loading, setLoading] = useState(false)
@@ -36,12 +36,14 @@ function CheckoutForm({ cart, getTotalPrice, userId, setCart }) {
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       await fetch("/api/save-order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
         body: JSON.stringify({
           paymentIntentId: paymentIntent.id,
           cart,
           total: getTotalPrice(),
-          userId,
         }),
       })
       setCart([])
@@ -70,11 +72,11 @@ function CheckoutForm({ cart, getTotalPrice, userId, setCart }) {
 export default function CheckoutPage() {
   const { cart, getTotalPrice, setCart } = useCart()
   const [clientSecret, setClientSecret] = useState("")
-  const [userId, setUserId] = useState(null)
+  const [accessToken, setAccessToken] = useState("")
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUserId(session?.user?.id ?? null)
+      setAccessToken(session?.access_token ?? "")
     })
   }, [])
 
@@ -114,7 +116,7 @@ export default function CheckoutPage() {
           <div style={{ background: "var(--theme-bg)" }} className="rounded-xl shadow-md p-6 border">
   <h2 style={{ color: "var(--theme-text)" }} className="text-xl font-bold mb-6">Payment Details</h2>
   <Elements stripe={stripePromise} options={{ clientSecret }}>
-    <CheckoutForm cart={cart} getTotalPrice={getTotalPrice} userId={userId} setCart={setCart} />
+    <CheckoutForm cart={cart} getTotalPrice={getTotalPrice} accessToken={accessToken} setCart={setCart} />
   </Elements>
 </div>
         )}

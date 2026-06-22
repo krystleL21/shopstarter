@@ -7,12 +7,27 @@ const supabase = createClient(
 
 export async function POST(request) {
   try {
-    const { paymentIntentId, cart, total, userId } = await request.json()
+    const authorizationHeader = request.headers.get("authorization") || ""
+    const accessToken = authorizationHeader.startsWith("Bearer ")
+      ? authorizationHeader.slice(7)
+      : ""
+
+    if (!accessToken) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { data: userData, error: userError } = await supabase.auth.getUser(accessToken)
+
+    if (userError || !userData?.user) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const { paymentIntentId, cart, total } = await request.json()
 
     const { error } = await supabase
       .from("orders")
       .insert({
-        user_id: userId,
+        user_id: userData.user.id,
         items: cart,
         total: total,
         status: "paid",
