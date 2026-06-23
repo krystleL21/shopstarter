@@ -1,18 +1,50 @@
 # ShopStarter
 
-A modern, full-featured e-commerce starter template built with Next.js, Tailwind CSS, Supabase, and Stripe. Launch your own online store in minutes.
+A modern, full-featured e-commerce starter template built with Next.js, Tailwind CSS, Supabase, and Stripe.
+
+Built for creators and developers who want to launch niche stores fast, then customize visuals, products, and branding without rewriting core ecommerce logic.
+
+Live demo: https://shopstarter.vercel.app/
 
 ## Features
 
-- Product listing with search and category filtering
-- Shopping cart that persists across sessions
-- User authentication (sign up, login, logout, password reset)
-- Stripe checkout integration
-- Order history and order confirmation
-- Admin dashboard to add, edit and delete products
-- Admin image gallery for managing store images
-- Fully customizable via a single config file
-- SEO ready with metadata, sitemap and robots.txt
+- Buyer-ready storefront: product listing, search, and category filtering
+- Persistent shopping cart with authenticated user support
+- Full auth suite: sign up, login, logout, forgot/reset password
+- Stripe checkout flow with secure order persistence
+- Customer account pages: profile, orders, and confirmation flow
+- Admin dashboard: add, edit, delete products and manage stock
+- Admin image gallery backed by Supabase Storage
+- Built-in theme switcher (Classic, Streetwear, Harvest)
+- Config-driven branding from one file (`config.js`)
+- SEO-ready defaults (`metadata`, `sitemap`, `robots.txt`)
+
+## Why Buyers Like This Starter
+
+- Fast setup: deploy to Vercel and connect Supabase + Stripe in minutes
+- Easy re-skinning: themes and style tokens are already wired
+- Practical architecture: App Router, route handlers, protected pages, and clear project structure
+- Safe defaults: checkout save flow validates authenticated users server-side
+
+## Quick Start (5 Steps)
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create your Supabase project and tables (`products`, `cart`, `orders`)
+3. Add Stripe test keys and Supabase keys to `.env.local`
+4. Run locally:
+
+```bash
+npm run dev
+```
+
+5. Deploy on Vercel and set the same environment variables
+
+Detailed setup is documented below.
 ---
 ## Prerequisites
 

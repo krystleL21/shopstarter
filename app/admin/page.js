@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { supabase } from "../lib/supabase"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -12,7 +12,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     const { data, error } = await supabase
       .from("products")
       .select("*")
@@ -20,7 +20,7 @@ export default function AdminPage() {
 
     if (!error) setProducts(data)
     setLoading(false)
-  }
+  }, [])
 
   useEffect(() => {
     async function checkAdmin() {
@@ -36,7 +36,7 @@ export default function AdminPage() {
     }
 
     checkAdmin()
-  }, [])
+  }, [fetchProducts, router])
 
   const deleteProduct = async (id) => {
     const confirm = window.confirm("Are you sure you want to delete this product?")

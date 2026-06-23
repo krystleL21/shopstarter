@@ -20,7 +20,7 @@ export default function OrderConfirmationPage() {
       setCart([])
     }
     clearCart()
-  }, [])
+  }, [setCart])
 
   return (
     <main className="px-6 py-20 max-w-lg mx-auto text-center">

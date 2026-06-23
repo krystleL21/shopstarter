@@ -91,7 +91,7 @@ export default function CheckoutPage() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret))
-  }, [cart])
+  }, [cart, clientSecret, getTotalPrice])
 
   return (
     <ProtectedRoute>
